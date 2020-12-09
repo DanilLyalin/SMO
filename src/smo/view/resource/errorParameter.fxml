@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="smo.view.ErrorParameter">
+    <children>
+        <Text layoutX="25.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ОШИБКА:" wrappingWidth="76.5367431640625" />
+        <Text fx:id="f_errText" layoutX="25.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="211.7366943359375" />
+        <Button fx:id="b_OK" layoutX="25.0" layoutY="125.0" mnemonicParsing="false" text="OK" />
+    </children>
+
+</AnchorPane>

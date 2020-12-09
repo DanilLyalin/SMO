@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Line?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="smo.view.AutoMode">
+    <children>
+        <Button fx:id="b_back" layoutX="780.0" layoutY="800.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="Назад" />
+        <Button fx:id="b_start" layoutX="780.0" layoutY="830.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="Запустить" />
+        <TableView fx:id="t_Sources" prefHeight="600.0" prefWidth="1600.0">
+            <columns>
+                <TableColumn fx:id="c_Sources" prefWidth="160" text="Источник" />
+                <TableColumn fx:id="c_NumOfRequest" prefWidth="160" text="Кол-во заявок" />
+                <TableColumn fx:id="c_Rejected" prefWidth="160" text="Отклонено" />
+                <TableColumn fx:id="c_Complete" prefWidth="160" text="Обслужено" />
+                <TableColumn fx:id="c_ProbOfReject" prefWidth="160" text="Вероятн. отказа" />
+                <TableColumn fx:id="c_AverageInSyst" prefWidth="160" text="Ср. вр. в сист." />
+                <TableColumn fx:id="c_AverageWaiting" prefWidth="160" text="Ср. вр. ожид." />
+                <TableColumn fx:id="c_AverageService" prefWidth="160" text="Ср. вр. обслуж." />
+                <TableColumn fx:id="c_DispWaiting" prefWidth="160" text="Дисп. ожид." />
+                <TableColumn fx:id="c_DispService" prefWidth="160" text="Дисп. обсл." />
+            </columns>
+        </TableView>
+        <TableView fx:id="t_Devices" layoutY="600.0" prefHeight="200.0" prefWidth="1600.0">
+            <columns>
+                <TableColumn fx:id="c_Device" prefWidth="100" text="Прибор" />
+                <TableColumn fx:id="c_UsingFactor" prefWidth="1500" text="Коэффициент использования" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

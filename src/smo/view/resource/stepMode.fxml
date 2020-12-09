@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="smo.view.StepMode">
+    <children>
+        <Line endX="798.4000244140625" endY="-0.5999755859375" layoutX="101.0" layoutY="540.0" startX="-101.0" />
+        <Button fx:id="b_back" layoutX="1167.0" layoutY="788.0" mnemonicParsing="false" text="Назад" />
+        <Button fx:id="b_step" layoutX="1167.0" layoutY="744.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="188.0" text="Далее" />
+        <TableView fx:id="t_Sources" prefHeight="600.0" prefWidth="1600.0">
+            <columns>
+                <TableColumn fx:id="c_Sources" prefWidth="160" text="Источник" />
+                <TableColumn fx:id="c_NumOfRequest" prefWidth="160" text="Кол-во заявок" />
+                <TableColumn fx:id="c_Rejected" prefWidth="160" text="Отклонено" />
+                <TableColumn fx:id="c_Complete" prefWidth="160" text="Обслужено" />
+                <TableColumn fx:id="c_ProbOfReject" prefWidth="160" text="Вероятн. отказа" />
+                <TableColumn fx:id="c_AverageInSyst" prefWidth="160" text="Ср. вр. в сист." />
+                <TableColumn fx:id="c_AverageWaiting" prefWidth="160" text="Ср. вр. ожид." />
+                <TableColumn fx:id="c_AverageService" prefWidth="160" text="Ср. вр. обслуж." />
+                <TableColumn fx:id="c_DispWaiting" prefWidth="160" text="Дисп. ожид." />
+                <TableColumn fx:id="c_DispService" prefWidth="160" text="Дисп. обсл." />
+            </columns>
+        </TableView>
+        <TableView fx:id="t_Devices" layoutY="600.0" prefHeight="400.0" prefWidth="741.0">
+            <columns>
+                <TableColumn fx:id="c_Device" prefWidth="100" text="Прибор" />
+                <TableColumn fx:id="c_IsWorking" prefWidth="100" text="Работает" />
+                <TableColumn fx:id="c_UsingFactor" prefWidth="100" text="Коэфф. использования" />
+                <TableColumn fx:id="c_TimeOfFinish" prefWidth="100" text="Время освобождения" />
+                <TableColumn fx:id="c_CurrentReq" prefWidth="340.0" text="Текущая заявка" />
+            </columns>
+        </TableView>
+        <Label layoutX="1162.0" layoutY="653.0" text="Текущее время:" />
+        <Label layoutX="1162.0" layoutY="703.0" text="Текущее событие:" />
+        <Text fx:id="text_CurrTime" layoutX="1306.0" layoutY="666.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+        <Text fx:id="text_CurrEvent" layoutX="1306.0" layoutY="716.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+        <TableView fx:id="t_Buffer" layoutX="754.0" layoutY="601.0" prefWidth="400.0">
+            <columns>
+                <TableColumn fx:id="c_Queue" prefWidth="133" text="Место" />
+                <TableColumn fx:id="c_SourceNum" prefWidth="133" text="Номер источника" />
+                <TableColumn fx:id="c_TimeOfGeneration" prefWidth="133" text="Время генерации" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
