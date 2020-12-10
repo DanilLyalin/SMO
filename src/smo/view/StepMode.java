@@ -158,7 +158,6 @@ public class StepMode {
                         state = controller.startStep(false, State.START);
                         controllerReady = true;
                     }
-                    text_CurrEvent.setText(nameEnum(state));
 
                     state = controller.startStep(true, state);
                     if(state == REQ_ALLOC){
@@ -178,6 +177,8 @@ public class StepMode {
 
 
                 }
+                text_CurrEvent.setText(nameEnum(state));
+
             }catch (SMOException e){
 
             }

@@ -85,7 +85,7 @@ public class Controller {
     protected State step(final State state, final boolean modeStep) throws SMOException {
         if (modeStep) {
             StatisticCalculate.requests.clear();
-            for(int i = 0; i < countUnallocatedReq; i++) {
+            for (int i = 0; i < countUnallocatedReq; i++) {
                 StatisticCalculate.requests.add(saveUnallocatedReq.get(i));
             }
         }
@@ -114,7 +114,9 @@ public class Controller {
                 return REQ_ALLOC;
 
             case REQ_ALLOC:
-                //tempState =  requestDispatcher.allocateRequest(currentTime);
+                if (!modeStep) {
+                    tempState = requestDispatcher.allocateRequest(currentTime);
+                }
                 return SEND;
 
             case ALL_REQ_IN_DEV:
@@ -148,49 +150,6 @@ public class Controller {
 
         }
     }
-
-    /*
-    protected boolean step() {
-        if (debug) System.out.println();
-        if (debug) System.out.println("__________________________________________________");
-        if (debug) System.out.println("current time = " + currentTime);
-
-        Request unallocateRequest = requestDispatcher.getFirstNotAllocatedRequest();
-        if (unallocateRequest != null && unallocateRequest.getTimeGenerated() >= currentTime) {
-            currentTime = unallocateRequest.getTimeGenerated();
-
-            checkAllDevice(currentTime);
-            sendToDevice(currentTime);
-
-            if (debug) System.out.println("Buffer at time = " + currentTime);
-            requestDispatcher.allocateRequest(currentTime);                           //кладет в буфер, удаляя самый старый если переполнено
-
-            if (debug) System.out.println(buffer.showAllRequests() + "end of buffer");
-        } else if (unallocateRequest == null && buffer.isEmpty()) {
-            for (int i = 0; i < numDevice; i++) {
-                if (!devices[i].isFree()) {
-                    if (debug) System.out.println("[" + devices[i] + "] end of request [" + devices[i].getCurrReq() +
-                            "] at " + devices[i].getTimeFinish());
-                    devices[i].freeRequest();
-                }
-            }
-            return false;
-        }else if(unallocateRequest == null && !buffer.isEmpty()){
-            double temp = Double.MAX_VALUE;
-            for(int i = 0; i < devices.length; i++){
-                if(temp > devices[i].getTimeFinish()){
-                    temp = devices[i].getTimeFinish();
-                }
-            }
-            currentTime = temp + Parameters.epsilon;
-        }
-
-        checkAllDevice(currentTime);
-        sendToDevice(currentTime);
-
-        return true;
-    }
-*/
 
     public Double getTimeOfLast() {
         return timeOfLast;
@@ -255,15 +214,23 @@ public class Controller {
         this.sources = new Source[numSource];
         this.devices = new Device[numDevice];
 
-        for (int i = 0; i < numSource; i++) {
-            if (i != numSource - 1) {
-                sources[i] = new Source(i, lamda, requestDispatcher, numRequest / numSource);
-            } else {
-                sources[i] = new Source(i, lamda, requestDispatcher, numRequest -
-                        i * numRequest / numSource);
+        if (numSource <= numRequest) {
+            for (int i = 0; i < numSource; i++) {
+                if (i != numSource - 1) {
+                    sources[i] = new Source(i, lamda, requestDispatcher, numRequest / numSource);
+                } else {
+                    sources[i] = new Source(i, lamda, requestDispatcher, numRequest -
+                            i * numRequest / numSource);
+                }
+            }
+        } else {
+            for (int i = 0; i < numRequest; i++) {
+                sources[i] = new Source(i, lamda, requestDispatcher, 1);
+            }
+            for (int i = numRequest; i < numSource; i++) {
+                sources[i] = new Source(i, lamda, requestDispatcher, 0);
             }
         }
-
         for (int i = 0; i < numDevice; i++) {
             devices[i] = new Device(i, alpha, beta);
         }
